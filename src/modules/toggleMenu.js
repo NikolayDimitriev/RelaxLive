@@ -1,5 +1,6 @@
 const toggleMenu = () => {
     const menuDialog = document.querySelector('.popup-dialog-menu'),
+        popUpRepair = document.querySelector('.popup-repair-types'),
         style = document.createElement('style');
 
     style.textContent = `
@@ -16,12 +17,13 @@ const toggleMenu = () => {
 
     document.body.addEventListener('click', e => {
         const target = e.target;
-
+        console.log(target);
         if (target.matches('img.menu__icon')) {
             handlerMenu();
         } else if (target.matches('.close-menu')) {
             handlerMenu();
-        } else if (menuDialog.matches('.active-menu') && target.tagName.toLowerCase() === 'a') {
+        } else if (menuDialog.matches('.active-menu') && target.tagName.toLowerCase() === 'a' &&
+            target.parentNode.matches('.popup-menu-nav__item')) {
             e.preventDefault();
 
             const blockId = target.getAttribute('href');
@@ -44,6 +46,20 @@ const toggleMenu = () => {
                 behavior: "smooth",
                 block: "start"
             });
+        } else if (menuDialog.matches('.active-menu') &&
+            (target.matches('a.no-overflow') || target.parentNode.matches('a.no-overflow') || target.parentNode.parentNode.matches('a.no-overflow'))) {
+            handlerMenu();
+            popUpRepair.style.cssText = `
+                visibility: visible;
+            `;
+        } else if (target.matches('.mobile-hide') && target.parentNode.matches('.popup-repair-types')) {
+            popUpRepair.style.cssText = `
+                visibility: hidden;
+            `;
+        } else if (target.tagName.toLowerCase() === 'a' && target.parentNode.matches('.link-list-repair')) {
+            popUpRepair.style.cssText = `
+                visibility: visible;
+            `;
         }
     });
 };
