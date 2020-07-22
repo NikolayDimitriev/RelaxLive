@@ -1,9 +1,9 @@
 //function
 
-const toggleMenu = () => {
+const toggleNumber = () => {
 
     //при клике на стрелоку открывается второй номер телефона
-    //создаю дополнительные классы 
+    //создаю дополнительные классы
     const style = document.createElement('style');
     style.textContent = `
         .header-contacts__click {
@@ -20,18 +20,13 @@ const toggleMenu = () => {
     //отлавливаю событие клика
     document.querySelector('.header-contacts__arrow').addEventListener('click', () => {
         document.querySelector('.header-contacts__phone-number-accord').classList.toggle('header-contacts__click');
-        document.querySelector('.header-contacts__phone-number-accord>.header-contacts__phone-number').classList.toggle('header-contacts__click');
+
+        document.querySelector('.header-contacts__phone-number-accord>.header-contacts__phone-number')
+            .classList.toggle('header-contacts__click');
+
         document.querySelector('.header-contacts__arrow > img').classList.toggle('header-contacts__arrow-transform');
     });
 
-
-
-
-;
 };
 
-
-
-
-
-export default toggleMenu;
+export default toggleNumber;
