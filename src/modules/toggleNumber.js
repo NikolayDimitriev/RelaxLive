@@ -14,6 +14,7 @@ const toggleNumber = () => {
             transform: rotate(180deg);
         }
     `;
+    style.id = 'phoneNumbers';
     //добавляю их в документ
     document.head.append(style);
 
