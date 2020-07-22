@@ -30,6 +30,20 @@ const toggleMenu = () => {
                 block: "start"
             });
             handlerMenu();
+        } else if (target.matches('.button-footer')) {
+            const blockId = target.firstChild.getAttribute('href');
+            document.querySelector(blockId).scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        } else if (target.matches('a') && target.parentNode.matches('button.button-footer')) {
+            e.preventDefault();
+
+            const blockId = target.getAttribute('href');
+            document.querySelector(blockId).scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
         }
     });
 };
