@@ -47,6 +47,7 @@ const toggleMenuAndPopUp = () => {
                 block: "start"
             });
         } else if (menuDialog.matches('.active-menu') &&
+            // eslint-disable-next-line max-len
             (target.matches('a.no-overflow') || target.parentNode.matches('a.no-overflow') || target.parentNode.parentNode.matches('a.no-overflow'))) {
             handlerMenu();
             popUpRepair.style.visibility = 'hidden';
