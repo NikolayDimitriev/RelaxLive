@@ -2,10 +2,10 @@
 'use strict';
 
 import toggleNumber from './modules/toggleNumber';
-import toggleMenu from './modules/toggleMenu';
+import toggleMenuAndPopUp from './modules/toggleMenuAndPopUp';
 import sendForm from './modules/sendForm';
 
 
 toggleNumber();
-toggleMenu();
+toggleMenuAndPopUp();
 sendForm();

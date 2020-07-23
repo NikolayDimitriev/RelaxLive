@@ -1,4 +1,6 @@
 const sendForm = () => {
+
+    //маска
     function maskPhone(selector, masked = '+7 (___) ___-__-__') {
         const elems = document.querySelectorAll(selector);
 
@@ -33,7 +35,7 @@ const sendForm = () => {
 
     }
 
-    //маска для ввода телефона
+    //применение маски для номеров
     maskPhone('input[name="phone"]');
 
     //запрет ввода в инпуте "номера" всего кроме цифр
@@ -41,6 +43,54 @@ const sendForm = () => {
         item.addEventListener('input', () => {
             item.value = item.value.replace(/^[-()]\d/g, '');
         });
+    });
+
+    //ajax отправка формы
+    //для каждой формы
+    document.querySelectorAll('form').forEach(form => {
+
+        //все чекбоксы в формах обязательны
+        form.querySelector('input[type="checkbox"]').required = true;
+
+        //отправка формы
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const body = {};
+            formData.forEach((val, key) => {
+                body[key] = val;
+            });
+
+            // eslint-disable-next-line no-use-before-define
+            postData(body)
+                .then(response => {
+                    if (response.status !== 200) {
+                        throw new Error('status network not 200.');
+                    }
+                })
+                .catch(error => console.error(error));
+
+            //через 3 секунды очищаем инпуты и открываем модальное окно
+            setTimeout(() => {
+                form.querySelectorAll('input').forEach(item => {
+                    item.value = '';
+                });
+                //открытие модального окна
+                document.querySelector('.popup-thank').style.visibility = 'visible';
+            }, 3000);
+
+
+        });
+    });
+
+    //функция запроса на сервер
+    const postData = body => fetch('./server.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
     });
 };
 

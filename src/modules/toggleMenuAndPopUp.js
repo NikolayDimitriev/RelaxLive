@@ -1,4 +1,4 @@
-const toggleMenu = () => {
+const toggleMenuAndPopUp = () => {
     const menuDialog = document.querySelector('.popup-dialog-menu'),
         popUpRepair = document.querySelector('.popup-repair-types'),
         style = document.createElement('style');
@@ -49,19 +49,15 @@ const toggleMenu = () => {
         } else if (menuDialog.matches('.active-menu') &&
             (target.matches('a.no-overflow') || target.parentNode.matches('a.no-overflow') || target.parentNode.parentNode.matches('a.no-overflow'))) {
             handlerMenu();
-            popUpRepair.style.cssText = `
-                visibility: visible;
-            `;
+            popUpRepair.style.visibility = 'hidden';
         } else if (target.matches('.mobile-hide') && target.parentNode.matches('.popup-repair-types')) {
-            popUpRepair.style.cssText = `
-                visibility: hidden;
-            `;
+            popUpRepair.style.visibility = 'hidden';
         } else if (target.tagName.toLowerCase() === 'a' && target.parentNode.matches('.link-list-repair')) {
-            popUpRepair.style.cssText = `
-                visibility: visible;
-            `;
+            popUpRepair.style.visibility = 'hidden';
+        } else if (target.matches('.close-thank')) {
+            document.querySelector('.popup-thank').style.visibility = 'hidden';
         }
     });
 };
 
-export default toggleMenu;
+export default toggleMenuAndPopUp;
