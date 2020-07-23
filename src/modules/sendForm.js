@@ -49,7 +49,7 @@ const sendForm = () => {
     //для каждой формы
     document.querySelectorAll('form').forEach(form => {
 
-        //все чекбоксы в формах обязательны
+        //все checkbox обязательны
         form.querySelector('input[type="checkbox"]').required = true;
 
         //отправка формы
