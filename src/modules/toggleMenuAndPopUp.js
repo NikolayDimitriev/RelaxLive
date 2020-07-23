@@ -56,6 +56,8 @@ const toggleMenuAndPopUp = () => {
             popUpRepair.style.visibility = 'hidden';
         } else if (target.matches('.close-thank')) {
             document.querySelector('.popup-thank').style.visibility = 'hidden';
+        } else if (target.matches('.mobile-hide') && target.parentNode.matches('.popup-privacy')) {
+            document.querySelector('.popup-privacy').style.visibility = 'hidden';
         }
     });
 };

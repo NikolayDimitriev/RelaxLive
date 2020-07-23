@@ -99,6 +99,13 @@ const sendForm = () => {
         },
         body: JSON.stringify(body)
     });
+
+    document.querySelectorAll('span.link-privacy').forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelector('.popup-privacy').style.visibility = 'visible';
+        });
+    });
+
 };
 
 export default sendForm;
