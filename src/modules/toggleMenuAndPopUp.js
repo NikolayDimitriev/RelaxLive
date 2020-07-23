@@ -17,7 +17,7 @@ const toggleMenuAndPopUp = () => {
 
     document.body.addEventListener('click', e => {
         const target = e.target;
-        
+
         if (target.matches('img.menu__icon')) {
             handlerMenu();
         } else if (target.matches('.close-menu')) {

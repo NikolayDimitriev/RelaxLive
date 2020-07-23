@@ -49,8 +49,15 @@ const sendForm = () => {
     //для каждой формы
     document.querySelectorAll('form').forEach(form => {
 
-        //все checkbox обязательны
-        form.querySelector('input[type="checkbox"]').required = true;
+        //блокировка отправки формы
+        form.querySelector('button').disabled = true;
+        form.querySelector('input[type="checkbox"]').addEventListener('change', () => {
+            if (form.querySelector('input[type="checkbox"]').checked) {
+                form.querySelector('button').disabled = false;
+            } else {
+                form.querySelector('button').disabled = true;
+            }
+        });
 
         //отправка формы
         form.addEventListener('submit', e => {
