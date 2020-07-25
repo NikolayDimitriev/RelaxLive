@@ -18,12 +18,15 @@ const toggleMenuAndPopUp = () => {
     document.body.addEventListener('click', e => {
         const target = e.target;
 
+        //открытие меню по картинке
         if (target.matches('img.menu__icon')) {
             handlerMenu();
+        //закрытие меню по кнопке
         } else if (target.matches('.close-menu')) {
             handlerMenu();
+        //переход по ссылка в меню
         } else if (menuDialog.matches('.active-menu') && target.tagName.toLowerCase() === 'a' &&
-            target.parentNode.matches('.popup-menu-nav__item')) {
+            target.closest('.popup-menu-nav__item')) {
             e.preventDefault();
 
             const blockId = target.getAttribute('href');
@@ -32,13 +35,15 @@ const toggleMenuAndPopUp = () => {
                 block: "start"
             });
             handlerMenu();
+        //кнопка "Вверх" клик по кнопке
         } else if (target.matches('.button-footer')) {
             const blockId = target.firstChild.getAttribute('href');
             document.querySelector(blockId).scrollIntoView({
                 behavior: "smooth",
                 block: "start"
             });
-        } else if (target.matches('a') && target.parentNode.matches('button.button-footer')) {
+        //кнопка "Вверх" клик по ссылке
+        } else if (target.matches('a') && target.closest('button.button-footer')) {
             e.preventDefault();
 
             const blockId = target.getAttribute('href');
@@ -46,19 +51,31 @@ const toggleMenuAndPopUp = () => {
                 behavior: "smooth",
                 block: "start"
             });
-        } else if (menuDialog.matches('.active-menu') &&
-            // eslint-disable-next-line max-len
-            (target.matches('a.no-overflow') || target.parentNode.matches('a.no-overflow') || target.parentNode.parentNode.matches('a.no-overflow'))) {
+        //клик в меню по кнопке "полный список услуг"
+        } else if (menuDialog.matches('.active-menu') && target.closest('a.no-overflow')) {
             handlerMenu();
+            popUpRepair.style.visibility = 'visible';
+        //скрытие окна "список услуг"
+        } else if (target.matches('.mobile-hide') && target.closest('.popup-repair-types')) {
             popUpRepair.style.visibility = 'hidden';
-        } else if (target.matches('.mobile-hide') && target.parentNode.matches('.popup-repair-types')) {
-            popUpRepair.style.visibility = 'hidden';
-        } else if (target.tagName.toLowerCase() === 'a' && target.parentNode.matches('.link-list-repair')) {
-            popUpRepair.style.visibility = 'hidden';
+        //открытие "список услуг" не из меню
+        } else if (target.closest('.link-list-repair')) {
+            popUpRepair.style.visibility = 'visible';
+        //закрытие окна об успешной отправки формы
         } else if (target.matches('.close-thank')) {
             document.querySelector('.popup-thank').style.visibility = 'hidden';
-        } else if (target.matches('.mobile-hide') && target.parentNode.matches('.popup-privacy')) {
+        //закрытие окна "политика конфиденциальности"
+        } else if (target.matches('.mobile-hide') && target.closest('.popup-privacy')) {
             document.querySelector('.popup-privacy').style.visibility = 'hidden';
+        //открытие окна "политика конфиденциальности"
+        } else if (target.closest('span.link-privacy')) {
+            document.querySelector('.popup-privacy').style.visibility = 'visible';
+        //открытие окна "консультация"
+        } else if (target.closest('button.button.button_wide')) {
+            document.querySelector('.popup-consultation').style.visibility = 'visible';
+        //закрытие окна "консультация"
+        } else if (target.closest('.close.close-consultation')) {
+            document.querySelector('.popup-consultation').style.visibility = 'hidden';
         }
     });
 };
