@@ -8,6 +8,7 @@ import prompt from './modules/prompt';
 import promptSlider from './modules/promptSlider';
 import carouselSliders from './modules/carouselSliders';
 import partnersSlider from './modules/partnersSlider';
+import accordion from './modules/accordion';
 
 toggleNumber();
 toggleMenuAndPopUp();
@@ -16,3 +17,4 @@ prompt();
 promptSlider();
 carouselSliders();
 partnersSlider();
+accordion();
