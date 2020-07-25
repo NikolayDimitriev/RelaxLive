@@ -5,9 +5,11 @@ import toggleNumber from './modules/toggleNumber';
 import toggleMenuAndPopUp from './modules/toggleMenuAndPopUp';
 import sendForm from './modules/sendForm';
 import prompt from './modules/prompt';
+import promptSlider from './modules/promptSlider';
 
 
 toggleNumber();
 toggleMenuAndPopUp();
 sendForm();
 prompt();
+promptSlider();
