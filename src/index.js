@@ -10,6 +10,8 @@ import carouselSliders from './modules/carouselSliders';
 import partnersSlider from './modules/partnersSlider';
 import accordion from './modules/accordion';
 import reviewsSlider from './modules/reviewsSlider';
+import scheme from './modules/scheme';
+
 
 toggleNumber();
 toggleMenuAndPopUp();
@@ -20,3 +22,4 @@ carouselSliders();
 partnersSlider();
 accordion();
 reviewsSlider();
+scheme();
