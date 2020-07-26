@@ -11,6 +11,7 @@ import partnersSlider from './modules/partnersSlider';
 import accordion from './modules/accordion';
 import reviewsSlider from './modules/reviewsSlider';
 import scheme from './modules/scheme';
+import designs from './modules/designs';
 
 
 toggleNumber();
@@ -23,3 +24,4 @@ partnersSlider();
 accordion();
 reviewsSlider();
 scheme();
+designs();
