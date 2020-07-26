@@ -9,6 +9,7 @@ import promptSlider from './modules/promptSlider';
 import carouselSliders from './modules/carouselSliders';
 import partnersSlider from './modules/partnersSlider';
 import accordion from './modules/accordion';
+import reviewsSlider from './modules/reviewsSlider';
 
 toggleNumber();
 toggleMenuAndPopUp();
@@ -18,3 +19,4 @@ promptSlider();
 carouselSliders();
 partnersSlider();
 accordion();
+reviewsSlider();

@@ -185,6 +185,7 @@ const carouselSliders = () => {
     });
 
     partners.init();
+
 };
 
 export default carouselSliders;
