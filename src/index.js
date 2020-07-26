@@ -13,6 +13,7 @@ import reviewsSlider from './modules/reviewsSlider';
 import scheme from './modules/scheme';
 import designs from './modules/designs';
 import designsPopUp from './modules/designsPopUp';
+import repair from './modules/repair';
 
 
 toggleNumber();
@@ -27,3 +28,4 @@ reviewsSlider();
 scheme();
 designs();
 designsPopUp();
+repair();
