@@ -76,6 +76,8 @@ const toggleMenuAndPopUp = () => {
         //закрытие окна "консультация"
         } else if (target.closest('.close.close-consultation')) {
             document.querySelector('.popup-consultation').style.visibility = 'hidden';
+        } else if (target.closest('.close') && target.closest('.popup-design')) {
+            document.querySelector('.popup.popup-design').style.visibility = 'hidden';
         }
     });
 };

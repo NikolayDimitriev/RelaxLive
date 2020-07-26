@@ -12,6 +12,7 @@ import accordion from './modules/accordion';
 import reviewsSlider from './modules/reviewsSlider';
 import scheme from './modules/scheme';
 import designs from './modules/designs';
+import designsPopUp from './modules/designsPopUp';
 
 
 toggleNumber();
@@ -25,3 +26,4 @@ accordion();
 reviewsSlider();
 scheme();
 designs();
+designsPopUp();

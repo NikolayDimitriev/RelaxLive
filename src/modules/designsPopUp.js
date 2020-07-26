@@ -1,23 +1,26 @@
-const designs = () => {
-    const designs = document.getElementById('designs'),
+const designsPopUp = () => {
+    const designs = document.querySelector('.popup.popup-design'),
         designsList = designs.querySelector('.nav-list-designs'),
         navButtons = [...designsList.querySelectorAll('.designs-nav__item')],
-        sliderItem = [...designs.querySelector('.designsSingle-slider').children],
-        previewItem = [...designs.querySelectorAll('.preview-block')],
-        designsCounter = designs.querySelector('#designs-counter'),
+        sliderItem = [...designs.querySelector('.designsPopUpSingle-slider').children],
+        previewItem = [...designs.querySelectorAll('.popup-design-text')],
+        designsCounter = designs.querySelector('#popup-designs-counter'),
         currentCounter = designsCounter.querySelector('.slider-counter-content__current'),
         totalCounter = designsCounter.querySelector('.slider-counter-content__total');
 
-    //стили для блоков в слайдере
+    // стили для блоков в слайдере
     const style = document.createElement('style');
-    style.id = 'designsSlider-style';
+    style.id = 'designsPopUpSlider-style';
     style.textContent = `
-        .designsSingle-slider {
+        .designsPopUpSingle-slider {
             position: relative;
             display: flex;
             width: 100%;
             height: 100%;
             transition: transform 0.5s !important;
+        }
+        .popup-design-slider-wrap {
+            overflow: hidden !important;
         }
     `;
     document.head.append(style);
@@ -30,6 +33,7 @@ const designs = () => {
     });
 
     const toggleTabContent = i => {
+        //поменяли активную кнопку
         navButtons.forEach((item, index) => {
             if (index === i) {
                 item.classList.add('active');
@@ -37,45 +41,36 @@ const designs = () => {
                 item.classList.remove('active');
             }
         });
+        //показали описание стиля
         previewItem.forEach((item, index) => {
             if (index === i) {
-                item.classList.add('visible');
+                item.classList.add('visible-content-block');
             } else {
-                item.classList.remove('visible');
+                item.classList.remove('visible-content-block');
             }
         });
+        //выделили отдельным классом активный стиль
         sliderItem.forEach((item, index) => {
             if (index === i) {
-                item.classList.add('designsSignle-slider_active');
+                item.classList.add('designsPopUpSingle-slider_active');
                 totalCounter.textContent = item.children.length;
             } else {
-                item.classList.remove('designsSignle-slider_active');
+                item.classList.remove('designsPopUpSingle-slider_active');
             }
         });
-
+        //сделали сдвиг
         const widthSlide = parseFloat(getComputedStyle(sliderItem[0]).width);
-        designs.querySelector('.designsSingle-slider').style.transform = `translateX(-${i * widthSlide}px)`;
+        designs.querySelector('.designsPopUpSingle-slider').style.transform = `translateX(-${i * widthSlide}px)`;
     };
 
     const changeSlide = i => {
         let heightSlide;
         sliderItem.forEach(item => {
-            if (item.matches('.designsSignle-slider_active')) {
+            if (item.matches('.designsPopUpSingle-slider_active')) {
                 heightSlide = parseFloat(getComputedStyle(item.children[0]).height);
                 item.style.transform = `translateY(-${i * heightSlide}px)`;
             }
         });
-    };
-
-    const toggleSlide = (i, array) => {
-        array.forEach((item, index) => {
-            if (index === i) {
-                item.classList.add('preview_active');
-            } else {
-                item.classList.remove('preview_active');
-            }
-        });
-        changeSlide(i);
     };
 
     //перемененные для слайдера навигации
@@ -111,45 +106,33 @@ const designs = () => {
             sliderItem.forEach(item => {
                 item.style.transform = `translateY(-0px)`;
             });
-        //по клике на превью, меняем слайд
-        } else if (target.closest('.preview-block')) {
-            const parent = target.parentNode.parentNode;
-            const parentItem = [...parent.children];
-            parentItem.forEach((item, index) => {
-                if (target.parentNode === item) {
-                    toggleSlide(index, parentItem);
-                }
-            });
         //в навигации клики по стрелкам
-        } else if (target.closest('#nav-arrow-designs_left')) {
+        } else if (target.closest('#nav-arrow-popup-designs_left')) {
             if (currentCount > 0) {
                 currentCount--;
                 designsList.style.transform = `translateX(-${currentCount * widthButton}px)`;
             }
-        } else if (target.closest('#nav-arrow-designs_right')) {
+        } else if (target.closest('#nav-arrow-popup-designs_right')) {
             if (currentCount < necessaryCount) {
                 currentCount++;
                 designsList.style.transform = `translateX(-${currentCount * widthButton}px)`;
             }
         //клики по стрелочка на слайде
-        } else if (target.closest('#design_left')) {
+        } else if (target.closest('#popup_design_left')) {
             if (currentSlide > 0) {
                 currentSlide--;
                 currentCounter.textContent = currentSlide + 1;
                 changeSlide(currentSlide);
             }
-        } else if (target.closest('#design_right')) {
+        } else if (target.closest('#popup_design_right')) {
             if (currentSlide < +totalCounter.textContent - 1) {
                 currentSlide++;
                 currentCounter.textContent = currentSlide + 1;
                 changeSlide(currentSlide);
             }
-        //открытие модального окна
-        } else if (target.closest('.link-list-designs')) {
-            document.querySelector('.popup.popup-design').style.visibility = 'visible';
         }
     });
 
 };
 
-export default designs;
+export default designsPopUp;
