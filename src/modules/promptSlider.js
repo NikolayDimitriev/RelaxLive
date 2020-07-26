@@ -43,7 +43,7 @@ const promptSlider = () => {
     });
 
     if (screen.width <= 1024) {
-        if (screen.width < 768) {
+        if (screen.width <= 768) {
             formulaSlider.style.transform = `translateX(-100%)`;
         }
         formulaSlider.insertBefore(formulaItem[formulaItem.length - 1], formulaItem[0]);
