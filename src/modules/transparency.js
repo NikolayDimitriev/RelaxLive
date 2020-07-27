@@ -44,17 +44,21 @@ const transparency = () => {
             }
         }
 
-        //выключение кнопок
-        if (currentSlide === 0) {
-            transparency.querySelector('#transparency-arrow_left').style.display = 'none';
-        } else {
-            transparency.querySelector('#transparency-arrow_left').style.display = 'flex';
-        }
+        //только при адаптиве
+        if (screen.width < 1100) {
+            //выключение кнопок
+            if (currentSlide === 0) {
+                transparency.querySelector('#transparency-arrow_left').style.display = 'none';
+            } else {
+                transparency.querySelector('#transparency-arrow_left').style.display = 'flex';
+            }
 
-        if (currentSlide === 2) {
-            transparency.querySelector('#transparency-arrow_right').style.display = 'none';
-        } else {
-            transparency.querySelector('#transparency-arrow_right').style.display = 'flex';
+            if (currentSlide === 2) {
+                transparency.querySelector('#transparency-arrow_right').style.display = 'none';
+            } else {
+                transparency.querySelector('#transparency-arrow_right').style.display = 'flex';
+            }
+
         }
     });
 };
