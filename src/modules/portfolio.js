@@ -26,19 +26,14 @@ const portfolio = () => {
     `;
     document.head.append(style);
 
-    //на маленьком экране, включаем кнопку
-    if (screen.width < 576) {
-        portfolioWrap.querySelector('#portfolio-arrow-mobile_right').removeAttribute('disabled');
-        portfolioWrap.querySelector('#portfolio-arrow-mobile_right').style.cssText = `z-index: 1000;`;
-    } else {
-        portfolioWrap.querySelector('#portfolio-arrow-mobile_right').setAttribute("disabled", "disabled");
-    }
+    let currentSlide = 0,
+        necessaryCount,
+        winWidth = screen.width;
+
     //в самом начале левые кнопки слайдера скрыты
     portfolioWrap.querySelector('#portfolio-arrow-mobile_left').style.display = 'none';
     portfolioWrap.querySelector('#portfolio-arrow_left').style.display = 'none';
 
-    let currentSlide = 0,
-        necessaryCount;
 
     //изменяю ширину элементов при изменении ширины экрана
     const changeWidthItem = (width, count) => {
@@ -49,6 +44,7 @@ const portfolio = () => {
 
     //изменяю необхомое число кликов, что б достичь правой стороны
     const changeWindowWidth = () => {
+        winWidth = screen.width;
         if (screen.width > 1140) {
             necessaryCount = 2;
             changeWidthItem(parseFloat(getComputedStyle(customSlider).width), 3);
@@ -61,10 +57,31 @@ const portfolio = () => {
         } else if (screen.width < 576) {
             necessaryCount = 9;
         }
+
+        //на маленьком экране, включаем кнопку
+        if (winWidth < 576) {
+            portfolioWrap.querySelector('#portfolio-arrow-mobile_right').removeAttribute('disabled');
+            portfolioWrap.querySelector('#portfolio-arrow-mobile_right').style.cssText = `z-index: 1000;`;
+        } else {
+            portfolioWrap.querySelector('#portfolio-arrow-mobile_right').setAttribute("disabled", "disabled");
+        }
+
         return necessaryCount;
     };
 
-    window.addEventListener('resize', changeWindowWidth);
+    window.addEventListener('resize', () => {
+        currentSlide = 0;
+        customSlider.style.transform = `translateX(-0px)`;
+        if (screen.width >= 576) {
+            portfolioWrap.querySelector('#portfolio-arrow_right').style.display = 'flex';
+            portfolioWrap.querySelector('#portfolio-arrow_left').style.display = 'none';
+        } else {
+            portfolioWrap.querySelector('#portfolio-arrow_right').style.display = 'none';
+            portfolioWrap.querySelector('#portfolio-arrow_left').style.display = 'none';
+        }
+        currentCount.textContent = currentSlide + 1;
+        changeWindowWidth();
+    });
 
     portfolioWrap.addEventListener('click', e => {
         const target = e.target,
@@ -96,7 +113,7 @@ const portfolio = () => {
         }
         currentCount.textContent = currentSlide + 1;
 
-        if (screen.width >= 576) {
+        if (winWidth >= 576) {
             //скрываю левую кнопку в десктомном слайдере, если 0 элемент активен
             if (currentSlide === 0) {
                 portfolioWrap.querySelector('#portfolio-arrow_left').style.display = 'none';
