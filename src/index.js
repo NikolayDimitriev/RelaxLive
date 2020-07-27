@@ -15,6 +15,7 @@ import designs from './modules/designs';
 import designsPopUp from './modules/designsPopUp';
 import repair from './modules/repair';
 import transparency from './modules/transparency';
+import transparencyPopUp from './modules/transparencyPopUp';
 
 
 toggleNumber();
@@ -31,3 +32,4 @@ designs();
 designsPopUp();
 repair();
 transparency();
+transparencyPopUp();
