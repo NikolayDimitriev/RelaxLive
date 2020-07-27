@@ -80,16 +80,21 @@ const designs = () => {
 
     //перемененные для слайдера навигации
     let currentCount = 0;
-    let necessaryCount;
-    if (screen.width > 1024) {
-        necessaryCount = 1;
-    } else if (screen.width >= 768) {
-        necessaryCount = 2;
-    } else if (screen.width >= 576) {
-        necessaryCount = 3;
-    } else {
-        necessaryCount = 4;
-    }
+    const calcNecessartCount = () => {
+        let necessaryCount;
+        if (screen.width > 1024) {
+            necessaryCount = 1;
+        } else if (screen.width >= 768) {
+            necessaryCount = 2;
+        } else if (screen.width >= 576) {
+            necessaryCount = 3;
+        } else {
+            necessaryCount = 4;
+        }
+        return necessaryCount;
+    };
+
+    document.addEventListener('resize', calcNecessartCount);
 
     //переменные для клика по стрелкам в слайдере
     let currentSlide = 0;
@@ -127,7 +132,7 @@ const designs = () => {
                 designsList.style.transform = `translateX(-${currentCount * widthButton}px)`;
             }
         } else if (target.closest('#nav-arrow-designs_right')) {
-            if (currentCount < necessaryCount) {
+            if (currentCount < calcNecessartCount()) {
                 currentCount++;
                 designsList.style.transform = `translateX(-${currentCount * widthButton}px)`;
             }

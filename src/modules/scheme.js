@@ -47,16 +47,22 @@ const scheme = () => {
     };
 
     let currentCount = 0;
-    let necessaryCount;
-    if (screen.width > 1024) {
-        necessaryCount = 1;
-    } else if (screen.width >= 768) {
-        necessaryCount = 3;
-    } else if (screen.width >= 576) {
-        necessaryCount = 5;
-    } else {
-        necessaryCount = 7;
-    }
+    const calcNecessartCount = () => {
+        let necessaryCount;
+        if (screen.width > 1024) {
+            necessaryCount = 1;
+        } else if (screen.width >= 768) {
+            necessaryCount = 3;
+        } else if (screen.width >= 576) {
+            necessaryCount = 5;
+        } else {
+            necessaryCount = 7;
+        }
+
+        return necessaryCount;
+    };
+
+    document.addEventListener('resize', calcNecessartCount);
 
     schemeNav.addEventListener('click', e => {
         const target = e.target,
@@ -70,7 +76,7 @@ const scheme = () => {
                 }
             });
         } else if (target.closest('#nav-arrow-scheme_right')) {
-            if (currentCount < necessaryCount) {
+            if (currentCount < calcNecessartCount()) {
                 currentCount++;
                 schemeList.style.transform = `translateX(-${currentCount * widthButton}px)`;
             }

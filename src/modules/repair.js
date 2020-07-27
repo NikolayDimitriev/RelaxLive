@@ -61,17 +61,21 @@ const repair = () => {
 
     //перемененные для слайдера навигации
     let currentCount = 0;
-    let necessaryCount;
-    if (screen.width >= 1024) {
-        necessaryCount = 3;
-    } else if (screen.width >= 768) {
-        necessaryCount = 4;
-    } else if (screen.width >= 576) {
-        necessaryCount = 4;
-    } else {
-        necessaryCount = 5;
-    }
+    const calcNecessartCount = () => {
+        let necessaryCount;
+        if (screen.width >= 1024) {
+            necessaryCount = 3;
+        } else if (screen.width >= 768) {
+            necessaryCount = 4;
+        } else if (screen.width >= 576) {
+            necessaryCount = 4;
+        } else {
+            necessaryCount = 5;
+        }
 
+        return necessaryCount;
+    };
+    document.addEventListener('resize', calcNecessartCount);
     //переменные для клика по стрелкам в слайдере
     let currentSlide = 0;
 
@@ -112,7 +116,7 @@ const repair = () => {
                 repairNavList.style.transform = `translateX(-${currentCount * widthButton}px)`;
             }
         } else if (target.closest('#nav-arrow-repair-right_base')) {
-            if (currentCount < necessaryCount) {
+            if (currentCount < calcNecessartCount()) {
                 currentCount++;
                 repairNavList.style.transform = `translateX(-${currentCount * widthButton}px)`;
             }
