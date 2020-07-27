@@ -1,5 +1,11 @@
 const problemsSlider = () => {
-    const minWidth = parseFloat(getComputedStyle(document.querySelector('.problems-slider')).width);
+    let minWidth = parseFloat(getComputedStyle(document.querySelector('.problems-slider')).width),
+        winWidth = screen.width;
+
+    window.addEventListener('resize', () => {
+        winWidth = screen.width;
+        minWidth = parseFloat(getComputedStyle(document.querySelector('.problems-slider')).width);
+    });
 
     const style = document.createElement('style');
     style.id = 'problems-singleSlider';
@@ -49,7 +55,7 @@ const problemsSlider = () => {
         item.classList.add('problems-singleSlider__item');
     });
 
-    if (screen.width <= 1024) {
+    if (winWidth <= 1024) {
         problemsSlider.insertBefore(problemsItem[problemsItem.length - 1], problemsItem[0]);
         problemsItem = problemsSlider.querySelectorAll('.problems-item.problems-slider__slide');
 

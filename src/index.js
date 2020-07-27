@@ -19,6 +19,7 @@ import transparencyPopUp from './modules/transparencyPopUp';
 import problems from './modules/problems';
 import problemsSlider from './modules/problemsSlider';
 import portfolio from './modules/portfolio';
+import portfolioPopUp from './modules/portfolioPopUp';
 
 
 toggleNumber();
@@ -39,3 +40,4 @@ transparencyPopUp();
 problems();
 problemsSlider();
 portfolio();
+portfolioPopUp();
