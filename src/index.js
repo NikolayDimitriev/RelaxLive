@@ -16,6 +16,8 @@ import designsPopUp from './modules/designsPopUp';
 import repair from './modules/repair';
 import transparency from './modules/transparency';
 import transparencyPopUp from './modules/transparencyPopUp';
+import problems from './modules/problems';
+import problemsSlider from './modules/problemsSlider';
 
 
 toggleNumber();
@@ -33,3 +35,5 @@ designsPopUp();
 repair();
 transparency();
 transparencyPopUp();
+problems();
+problemsSlider();
