@@ -25,7 +25,19 @@ const transparency = () => {
     `;
     document.head.append(style);
 
-    let currentSlide = 0;
+    let currentSlide = 0, windowWidth = 1024;
+    const changeWindowWidth = () => {
+        windowWidth = screen.width;
+        if (windowWidth > 1100) {
+            slider.style.transform = `translateX(-0px)`;
+            transparency.querySelector('#transparency-arrow_right').style.display = 'none';
+            transparency.querySelector('#transparency-arrow_left').style.display = 'none';
+            currentSlide = 0;
+        } else {
+            transparency.querySelector('#transparency-arrow_right').style.display = 'flex';
+        }
+    };
+    window.addEventListener('resize', changeWindowWidth);
 
     sliderWrap.addEventListener('click', e => {
         const target = e.target,
@@ -43,9 +55,8 @@ const transparency = () => {
                 slider.style.transform = `translateX(-${currentSlide * itemWidth}px)`;
             }
         }
-
         //только при адаптиве
-        if (screen.width < 1100) {
+        if (windowWidth < 1100) {
             //выключение кнопок
             if (currentSlide === 0) {
                 transparency.querySelector('#transparency-arrow_left').style.display = 'none';
