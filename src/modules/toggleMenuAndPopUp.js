@@ -78,6 +78,9 @@ const toggleMenuAndPopUp = () => {
             document.querySelector('.popup-consultation').style.visibility = 'hidden';
         } else if (target.closest('.close') && target.closest('.popup-design')) {
             document.querySelector('.popup.popup-design').style.visibility = 'hidden';
+        //закрытие мод.окна "портфолео"
+        } else if (target.closest('.close') && target.closest('.popup-portfolio')) {
+            document.querySelector('.popup-portfolio').style.visibility = 'hidden';
         }
     });
 };
