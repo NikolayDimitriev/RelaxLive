@@ -1,6 +1,15 @@
 /* eslint-disable strict */
 'use strict';
 
+import "@babel/polyfill";
+import 'nodelist-foreach-polyfill';
+import 'formdata-polyfill';
+import "es6-promise";
+import 'fetch-polyfill';
+import elementClosest from 'element-closest';
+elementClosest(window);
+import 'mdn-polyfills/Node.prototype.append';
+
 import toggleNumber from './modules/toggleNumber';
 import toggleMenuAndPopUp from './modules/toggleMenuAndPopUp';
 import sendForm from './modules/sendForm';
