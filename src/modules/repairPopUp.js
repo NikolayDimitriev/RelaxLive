@@ -1,6 +1,19 @@
 const repairPopUp = () => {
     const popUpRepair = document.querySelector('.popup-repair-types'),
         linksOpenPopUp = document.querySelectorAll('.open-list-repair.link-list');
+    const style = document.createElement('style');
+    style.id = 'popUpRepair-style';
+    style.textContent = `
+        .button_o.active {
+            border-color: linear-gradient(90deg, #F48922 0%, #FFB015 100%);
+        }
+        @media (max-width: 1024px) {
+            .nav-list-popup-repair {
+                min-width: 500px !important;
+            }
+        }
+    `;
+    document.head.append(style);
 
     const outputData = data => {
         //блок со всеми кнопками навигации
@@ -8,7 +21,7 @@ const repairPopUp = () => {
 
         //добавляю кнопки в блок
         const getNavItems = () => {
-            for (let i = 0; i < data.length; i++) {
+            for (let i = 0; i < data.length - 1; i++) {
                 if (i === 0) {
                     navListPopupRepair.innerHTML =
                             `<button class="button_o popup-repair-types-nav__item active">${data[i].title}</button>`;
@@ -130,7 +143,6 @@ const repairPopUp = () => {
         //перевожу данные в массив и отправляю на вывод
         const parse = obj => {
             data = JSON.parse(obj);
-            console.log(data);
             outputData(data);
         };
         //обращаюсь к файлу, получаю данные
