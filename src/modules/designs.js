@@ -152,6 +152,7 @@ const designs = () => {
         //открытие модального окна
         } else if (target.closest('.link-list-designs')) {
             document.querySelector('.popup.popup-design').style.visibility = 'visible';
+            document.querySelector('.popup.popup-design').classList.add('openPopUp');
         }
     });
 

@@ -11,7 +11,7 @@ const problems = () => {
             top: 155px;
         }
         .problems-item-popup-Rotated::before {
-            transform: rotateZ(180deg)
+            transform: rotateZ(180deg);
         }
         .active-item .problems-item__icon {
             width: 80px;
@@ -21,6 +21,7 @@ const problems = () => {
         .active-item .problems-item-popup {
             visibility: visible;
             opacity: 1;
+            margin-top: 20px !important;
         }
         .active-item .problems-item__icon-inner {
             background: linear-gradient(90deg, #F48922 0%, #FFB015 100%);

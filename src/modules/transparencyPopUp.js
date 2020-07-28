@@ -39,6 +39,7 @@ const transparencyPopUp = () => {
 
         if (target.closest('.transparency-item__img')) {
             popUp.style.visibility = 'visible';
+            popUp.classList.add('openPopUp');
         }
         sliderItem.forEach((item, index) => {
             if (target.parentNode === item) {
@@ -74,8 +75,10 @@ const transparencyPopUp = () => {
                 toggleSlide(currentSlide);
             }
         //закртые окна "договоры"
-        } else if (target.closest('.close') && target.closest('.popup-transparency')) {
+        // eslint-disable-next-line max-len
+        } else if ((target.closest('.close') && target.closest('.popup-transparency')) || (target.closest('.openPopUp') && target.closest('.popup-transparency') && !target.closest('.popup-dialog-transparency'))) {
             popUp.style.visibility = 'hidden';
+            popUp.classList.remove('openPopUp');
             currentSlide = 0;
         }
 

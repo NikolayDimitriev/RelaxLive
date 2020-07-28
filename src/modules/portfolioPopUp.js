@@ -27,6 +27,7 @@ const portfolioPopUp = () => {
         const itemHeight = parseFloat(getComputedStyle(slidesPopUp[0]).height);
 
         portfolioPopUp.style.visibility = 'visible';
+        portfolioPopUp.classList.add('openPopUp');
         currentCount.textContent = i + 1;
         portfolioText.forEach((item, index) => {
             if (index === i) {

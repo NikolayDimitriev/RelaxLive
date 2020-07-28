@@ -45,18 +45,28 @@ const sendForm = () => {
         });
     });
 
+    //запрет ввода в инпуте "имя" латиницы и цифр
+    document.querySelectorAll('input[name="name"]').forEach(item => {
+        item.addEventListener('input', () => {
+            item.value = item.value.replace(/[^а-яА-яёЁ]/g, '');
+        });
+    });
+
     //ajax отправка формы
     //для каждой формы
     document.querySelectorAll('form').forEach(form => {
 
         //блокировка отправки формы
         form.querySelector('button').disabled = true;
-        form.querySelector('input[type="checkbox"]').addEventListener('change', () => {
-            if (form.querySelector('input[type="checkbox"]').checked) {
-                form.querySelector('button').disabled = false;
-            } else {
-                form.querySelector('button').disabled = true;
-            }
+        form.querySelectorAll('input').forEach(item => {
+            item.addEventListener('change', () => {
+                // eslint-disable-next-line max-len
+                if (form.querySelector('input[type="checkbox"]').checked && form.querySelector('input[name="phone"]').value.length === 18) {
+                    form.querySelector('button').disabled = false;
+                } else {
+                    form.querySelector('button').disabled = true;
+                }
+            });
         });
 
         //отправка формы
@@ -83,8 +93,11 @@ const sendForm = () => {
                 form.querySelectorAll('input').forEach(item => {
                     item.value = '';
                 });
+                form.querySelector('input[type="checkbox"]').checked = false;
+                document.querySelector('.popup-consultation').style.visibility = 'hidden';
                 //открытие модального окна
                 document.querySelector('.popup-thank').style.visibility = 'visible';
+                document.querySelector('.popup-thank').classList.add('openPopUp');
             }, 3000);
 
 

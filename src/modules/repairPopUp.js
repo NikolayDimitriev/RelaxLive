@@ -4,13 +4,8 @@ const repairPopUp = () => {
     const style = document.createElement('style');
     style.id = 'popUpRepair-style';
     style.textContent = `
-        .button_o.active {
-            border-color: linear-gradient(90deg, #F48922 0%, #FFB015 100%);
-        }
-        @media (max-width: 1024px) {
-            .nav-list-popup-repair {
-                min-width: 500px !important;
-            }
+        .nav-list-popup-repair .active {
+            border: 2px solid #FFB015 !important;
         }
     `;
     document.head.append(style);
@@ -102,10 +97,14 @@ const repairPopUp = () => {
 
             const prevSlide = (item, i, strClass) => {
                 item[i].classList.remove(strClass);
+                const itemWidth = parseFloat(getComputedStyle(item[i]).width);
+                item[i].parentNode.style.transform = `translateX(-${i * (itemWidth + 50)}px)`;
             };
 
             const nextSlide = (item, i, strClass) => {
                 item[i].classList.add(strClass);
+                const itemWidth = parseFloat(getComputedStyle(item[i]).width);
+                item[i].parentNode.style.transform = `translateX(-${i * (itemWidth + 250)}px)`;
                 toggleContent(i);
             };
 
@@ -173,6 +172,7 @@ const repairPopUp = () => {
     linksOpenPopUp.forEach(item => {
         item.addEventListener('click', e => {
             if (e.target.closest('.open-list-repair')) {
+                popUpRepair.classList.add('openPopUp');
                 popUpRepair.style.visibility = 'visible';
                 getData();
             }

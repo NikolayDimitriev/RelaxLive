@@ -11,6 +11,13 @@ const toggleNumber = () => {
         .header-contacts__arrow-transform {
             transform: rotate(180deg);
         }
+        @media (max-width: 576px) {
+            .services-slider {
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 40px;
+            }
+        }
     `;
     style.id = 'phoneNumbers';
     //добавляю их в документ

@@ -19,7 +19,9 @@ const prompt = () => {
             parent.classList.add('active-item');
 
             const infoBlock = parent.querySelector('.formula-item-popup');
-            parent.style.cssText = `z-index: 1;`;
+            if (screen.width > 1024) {
+                parent.style.cssText = `z-index: 1;`;
+            }
 
             if (infoBlock.getBoundingClientRect().top < 5) {
                 infoBlock.classList.add('formula-item-popup-Rotated');
@@ -29,7 +31,9 @@ const prompt = () => {
         item.addEventListener('mouseout', e => {
             const target = e.target;
             const parent = target.closest('.formula-item');
-            parent.classList.remove('active-item');
+            if (screen.width > 1024) {
+                parent.classList.remove('active-item');
+            }
 
             const infoBlock = parent.querySelector('.formula-item-popup');
             infoBlock.classList.remove('formula-item-popup-Rotated');
