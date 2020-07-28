@@ -51,16 +51,12 @@ const toggleMenuAndPopUp = () => {
                 behavior: "smooth",
                 block: "start"
             });
-        //клик в меню по кнопке "полный список услуг"
+        //клик в меню по кнопке "полный список услуг", закрывает меню
         } else if (menuDialog.matches('.active-menu') && target.closest('a.no-overflow')) {
             handlerMenu();
-            popUpRepair.style.visibility = 'visible';
         //скрытие окна "список услуг"
-        } else if (target.matches('.mobile-hide') && target.closest('.popup-repair-types')) {
+        } else if (target.matches('.close') && target.closest('.popup-repair-types')) {
             popUpRepair.style.visibility = 'hidden';
-        //открытие "список услуг" не из меню
-        } else if (target.closest('.link-list-repair')) {
-            popUpRepair.style.visibility = 'visible';
         //закрытие окна об успешной отправки формы
         } else if (target.matches('.close-thank')) {
             document.querySelector('.popup-thank').style.visibility = 'hidden';

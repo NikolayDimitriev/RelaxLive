@@ -20,6 +20,7 @@ import problems from './modules/problems';
 import problemsSlider from './modules/problemsSlider';
 import portfolio from './modules/portfolio';
 import portfolioPopUp from './modules/portfolioPopUp';
+import repairPopUp from './modules/repairPopUp';
 
 
 toggleNumber();
@@ -41,3 +42,4 @@ problems();
 problemsSlider();
 portfolio();
 portfolioPopUp();
+repairPopUp();
