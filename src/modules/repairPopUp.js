@@ -159,7 +159,7 @@ const repairPopUp = () => {
                 }
             });
 
-            request.open('POST', file);
+            request.open('GET', file);
             request.setRequestHeader('Content-Type', 'application/json');
             request.send();
         };
