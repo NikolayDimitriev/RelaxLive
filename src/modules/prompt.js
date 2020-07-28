@@ -14,10 +14,12 @@ const prompt = () => {
     document.head.append(style);
     document.querySelectorAll('.formula-item__icon').forEach(item => {
         item.addEventListener('mouseover', e => {
-            e.target.parentNode.parentNode.classList.add('active-item');
+            const target = e.target;
+            const parent = target.closest('.formula-item');
+            parent.classList.add('active-item');
 
-            const infoBlock = e.target.previousSibling.previousSibling.previousSibling.previousSibling;
-            infoBlock.parentNode.parentNode.style.cssText = `z-index: 1;`;
+            const infoBlock = parent.querySelector('.formula-item-popup');
+            parent.style.cssText = `z-index: 1;`;
 
             if (infoBlock.getBoundingClientRect().top < 5) {
                 infoBlock.classList.add('formula-item-popup-Rotated');
@@ -25,10 +27,13 @@ const prompt = () => {
         });
 
         item.addEventListener('mouseout', e => {
-            e.target.parentNode.parentNode.classList.remove('active-item');
-            const infoBlock = e.target.previousSibling.previousSibling.previousSibling.previousSibling;
+            const target = e.target;
+            const parent = target.closest('.formula-item');
+            parent.classList.remove('active-item');
+
+            const infoBlock = parent.querySelector('.formula-item-popup');
             infoBlock.classList.remove('formula-item-popup-Rotated');
-            infoBlock.parentNode.parentNode.removeAttribute('style');
+            parent.removeAttribute('style');
         });
 
     });
