@@ -97,14 +97,18 @@ const repairPopUp = () => {
 
             const prevSlide = (item, i, strClass) => {
                 item[i].classList.remove(strClass);
-                const itemWidth = parseFloat(getComputedStyle(item[i]).width);
-                item[i].parentNode.style.transform = `translateX(-${i * (itemWidth + 50)}px)`;
+                if (screen.width < 1024) {
+                    const itemWidth = parseFloat(getComputedStyle(item[i]).width);
+                    item[i].parentNode.style.transform = `translateX(-${i * (itemWidth + 50)}px)`;
+                }
             };
 
             const nextSlide = (item, i, strClass) => {
                 item[i].classList.add(strClass);
-                const itemWidth = parseFloat(getComputedStyle(item[i]).width);
-                item[i].parentNode.style.transform = `translateX(-${i * (itemWidth + 250)}px)`;
+                if (screen.width < 1024) {
+                    const itemWidth = parseFloat(getComputedStyle(item[i]).width);
+                    item[i].parentNode.style.transform = `translateX(-${i * (itemWidth + 250)}px)`;
+                }
                 toggleContent(i);
             };
 

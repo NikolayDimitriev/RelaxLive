@@ -59,12 +59,28 @@ const sendForm = () => {
         //блокировка отправки формы
         form.querySelector('button').disabled = true;
         form.querySelectorAll('input').forEach(item => {
-            item.addEventListener('change', () => {
+            item.addEventListener('input', () => {
                 // eslint-disable-next-line max-len
                 if (form.querySelector('input[type="checkbox"]').checked && form.querySelector('input[name="phone"]').value.length === 18) {
                     form.querySelector('button').disabled = false;
                 } else {
                     form.querySelector('button').disabled = true;
+                }
+
+                if (form.querySelector('button').disabled) {
+                    if (!form.querySelector('input[type="checkbox"]').checked) {
+                        form.querySelector('.checkbox__label').style.cssText = 'border-color: red';
+                    } else {
+                        form.querySelector('.checkbox__label').style.cssText = 'border-color: #322823';
+                    }
+                    if (form.querySelector('input[name="phone"]').value.length !== 18) {
+                        form.querySelector('input[name="phone"]').style.cssText = 'border: 2px solid red';
+                    } else {
+                        form.querySelector('input[name="phone"]').style.cssText = 'border: none';
+                    }
+                } else {
+                    form.querySelector('.checkbox__label').style.cssText = 'border-color: #322823';
+                    form.querySelector('input[name="phone"]').style.cssText = 'border: none';
                 }
             });
         });
