@@ -25,7 +25,7 @@ const transparency = () => {
     `;
     document.head.append(style);
 
-    let currentSlide = 0, windowWidth = 1101;
+    let currentSlide = 0, windowWidth = screen.width;
     const changeWindowWidth = () => {
         windowWidth = screen.width;
         if (windowWidth > 1100) {
